@@ -1,0 +1,43 @@
+# server
+server:
+  port: 8763
+  
+# datasource
+spring:
+  datasource:
+  # tomcat   
+    tomcat:
+      max-active: 1400
+      max-idle: 1400
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:test
+    username: root
+    password: 
+    schema: 
+    - classpath:sql/test-schema.sql
+    data: 
+    - classpath:sql/banners.sql
+    - classpath:sql/organization.sql
+    - classpath:sql/person_role_banner.sql
+    - classpath:sql/person_role_category.sql
+    - classpath:sql/person_role_store.sql
+    - classpath:sql/person_role.sql
+    - classpath:sql/person.sql
+    
+# exception handle
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
+ 
+# mybatis
+mybatis:
+  mapper-locations:
+  - classpath:mapper/*.xml
+
+# pagehelper
+pagehelper:
+  helper-dialect: mysql
+  reasonable: false
+  support-methods-arguments: true
+  params: count=countSql
